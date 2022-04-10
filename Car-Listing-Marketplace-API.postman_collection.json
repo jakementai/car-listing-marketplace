@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "8f331d95-8de5-4ea9-ab0f-46f0b498c7b7",
+		"name": "Car-Listing-Marketplace-API",
+		"description": "## Hi! Welcome to my attempt at the sample task for Socar Backend Engineer\n\n### In this Collection, you will find two folders:\n\n#### **1\\. \"Requirements\" Folder**\n\nUnder this folder you will find the 3 API that I am required to implement:\n\n1.  Car Search\n2.  Car Listing\n3.  Car Availability\n    \n\n#### **2\\. \"All API Endpoints\" Folder**\n\nUnder this folder you will find all the endpoints that I have implemented for this sample task, they are just basic Create, Update, List All, and List by ID APIs for 3 models:\n\n1.  Users\n2.  Cars\n3.  CarAvailability\n    \n\n## OAuth 2.0 Authentication:\n\nI have implemented the OAuth Authentication using Okta as my choice.\n\nThe bearer token should be synced in this Postman Collection API, should the token be not synced, you can always create another token using the credentials in the app dir under \".env\" file.\n\n*I understand that this is a major security red flag, the \"client ID\" and \"secret\" SHOULD NEVER be exposed, I only included the \".env\" for the sake of ease of testing.*",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Requirements",
+			"item": [
+				{
+					"name": "Car Search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"18/04/2022\",\r\n    \"model\" : \"che\",\r\n    \"daily_pricing\": 500.00,\r\n    \"price_range\": 200\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/search",
+						"description": "## Request Body:\n\n**date** \\[*Optional*\\] - the date of car availabilities to search, String in DD/MM/YYYY format.\n\n**model** \\[*Optional*\\] - the model of car to search, String\n\n**daily_pricing** \\[*Optional*\\] - the pricing of cars to search, Decimals\n\n**price_range** \\[*Optional*\\] - the price range, default is 100. *Example: daily_pricing is 300 and price_range is 200, the search results will search of the price of cars between \\[100, 500\\].* Decimals.\n\n### No Criteria\n\nWhen no search criteria is passed to the API, it will list out all the car listings.\n\n### Dynamic Criteria\n\nThe search API is dynamic, so it can search of just one criteria or any combination of the three (date, model, daily_pricing).\n\n*Eg: date + Model, date + daily_pricing, only date, only daily_pricing, etc.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Car  for Listing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\": \"Ioniq Z-Wing Glider 2000\",\r\n    \"color\": \"Sky Blue\",\r\n    \"maker\": \"Hyun Dyson\",\r\n    \"total_mileage\": 3000,\r\n    \"owner_id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/cars",
+						"description": "## Request Body:\n\n**model** \\[*required*\\] - car model, String\n\n**color** \\[*required*\\] - car color, String\n\n**maker** \\[*required*\\] - car maker, String\n\n**total_mileage** \\[*required*\\] - car mileage, Integer\n\n**owner_id** \\[*required*\\] - car owner, must be a valid User ID, Integer"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Car Availability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"start_date\" : \"18/04/2022\",\r\n    \"end_date\" : \"20/04/2022\",\r\n    \"daily_pricing\" : 200.0,\r\n    \"car_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/car-slots",
+						"description": "## Request Body:\n\n**start_date** \\[*required*\\] - availability start date for car to be listed, String in DD/MM/YYYY format\n\n**end_date** \\[*required*\\] - availability end date for car to be listed, String in DD/MM/YYYY format\n\n**daily_pricing** \\[*required*\\] - car listing daily price, Decimal\n\n**car_id** \\[*required*\\] - car id, must be a valid car id, Integer"
+					},
+					"response": []
+				}
+			],
+			"description": "### Here are the 3 endpoint that I am required to implement"
+		},
+		{
+			"name": "All API Endpoints",
+			"item": [
+				{
+					"name": "CarAvailability",
+					"item": [
+						{
+							"name": "Create Car Availability",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"start_date\" : \"18/04/2022\",\r\n    \"end_date\" : \"20/04/2022\",\r\n    \"daily_pricing\" : 200.0,\r\n    \"car_id\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/car-slots"
+							},
+							"response": []
+						},
+						{
+							"name": "All Car Availabilities",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/car-slots"
+							},
+							"response": []
+						},
+						{
+							"name": "Car Availability by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/car-slots/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Car Availability",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"end_date\": \"20/04/2022\",\r\n    \"daily_pricing\": 750\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/car-slots/3"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cars",
+					"item": [
+						{
+							"name": "Search Cars",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"20/04/2022\",\r\n    \"model\" : \"che\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/search"
+							},
+							"response": []
+						},
+						{
+							"name": "All Cars",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/cars"
+							},
+							"response": []
+						},
+						{
+							"name": "Car by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/cars/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Car",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"model\": \"Ioniq Z-Wing Glider 2000\",\r\n    \"color\": \"Sky Blue\",\r\n    \"maker\": \"Hyun Dyson\",\r\n    \"total_mileage\": 3000,\r\n    \"owner_id\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/cars"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Car",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"color\" : \"Ocean Blue\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/cars/5"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "All Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/users/"
+							},
+							"response": []
+						},
+						{
+							"name": "User by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/users/6"
+							},
+							"response": []
+						},
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Luke Skywalker\",\r\n    \"age\" : 29\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/users/"
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"age\" : 31\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/users/6"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Here you will find all the endpoints that I have actually implemented in this sample task"
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": {
+			"tokenType": "Bearer",
+			"accessToken": "eyJraWQiOiI5eVVKWFNDdW5yVlhXOVhiU1ViSUJWbDNMNy0tNnNVX3l0NjJkcmVETmN3IiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULmVLWWE0ZlJXb1JGcVhBeG1BSXlrR2RBRnRXT2RPYlMtaE5xY25rUHhtdDQiLCJpc3MiOiJodHRwczovL2Rldi04NDI1MjI3MS5va3RhLmNvbS9vYXV0aDIvZGVmYXVsdCIsImF1ZCI6ImFwaTovL2RlZmF1bHQiLCJpYXQiOjE2NDk1ODYzNjQsImV4cCI6MTY0OTU4OTk2NCwiY2lkIjoiMG9hNG1lY2J3NTVYeGd3Qjg1ZDciLCJzY3AiOlsiY2FyX2xpc3RpbmdfbWFuYWdlciJdLCJzdWIiOiIwb2E0bWVjYnc1NVh4Z3dCODVkNyJ9.ZplnGW8KaK491op_DysJTDJjQg-Q7eMx7kJjqzjIdYTkcnRdLXgfn_H3wY7_cd44WSSJumD5x21wqhtXF3XAchAH3shWK3mAmrrrjjAEtQ5R-phmL56KHwXsnnZMaumz2A8LdI_byRWLADPJzVr1P4pMkwZbgfNezddtQq0s6Q-cKhQaQ4DOzK0GO8bV6r1TlxreciljKhMKCd5KF71InsjQZYc2E5A-Odlbn9mwue_64WHtLsR82F2wP9RWzPXIbCzKzxU3R5Cwx5X_9Bwu-bs4b8tyy8hfUK4U3h8_Fkz3bx9IUFmzXNIguaQc4Gyyq56BpfE98HFx9Z88pCcEeg",
+			"client_authentication": "header",
+			"accessTokenUrl": "https://dev-84252271.okta.com/oauth2/default/v1/token",
+			"scope": "car_listing_manager",
+			"clientSecret": "iobhbN1E2_v5GHIgmt9P5W_UgKZPWnObWBMjHmhR",
+			"clientId": "0oa4mecbw55XxgwB85d7",
+			"grant_type": "client_credentials",
+			"tokenName": "token",
+			"addTokenTo": "header"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

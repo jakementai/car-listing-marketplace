@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "mycar",
+    "password": "mycar123$",
+    "database": "car_listing",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone": "+08:00"
+  },
+  "test": {
+    "username": "mycar",
+    "password": "mycar123$",
+    "database": "car_listing",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone": "+08:00"
+  },
+  "production": {
+    "username": "mycar",
+    "password": "mycar123$",
+    "database": "car_listing",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone": "+08:00"
+  }
+}
