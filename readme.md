@@ -8,3 +8,4 @@ Please find the Postman Collection API at the app dir:
 ## Hosted on Heroku
 The API Endpoint are also hosted on Heroku:
 https://stark-beyond-39872.herokuapp.com/
+_PS: you are gonna need to send a Bearer Token to access as well :)_
