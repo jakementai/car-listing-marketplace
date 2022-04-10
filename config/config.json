@@ -22,7 +22,10 @@
     "timezone": "+08:00"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "jldmgtbdttkdve",
+    "password": "3dae4975d11c06783b3742a4734011b241d62b62a7ab21a632b2b369d073ab97",
+    "database": "dd8mbgi2tmb8v9",
+    "host": "ec2-52-73-155-171.compute-1.amazonaws.com",
     "dialect": "postgres",
     "timezone": "+08:00",
     "dialectOptions": {
